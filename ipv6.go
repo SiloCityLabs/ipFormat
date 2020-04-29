@@ -1,4 +1,4 @@
-package ipFormat
+package ipformat
 
 import (
 	"strconv"
@@ -7,11 +7,12 @@ import (
 
 // ToV6 converts ipv4 to ipv6
 func (ip IP) ToV6() (IP, error) {
-	if ip.TypeV6 {
+	// Return ip if its already v6 or if there are not enough parts to make a proper v6
+	if ip.TypeV6 || len(ip.Parts) < 4 {
 		return ip, nil
 	}
 
-	// start of ipv6
+	// Start of ipv6
 	newParts := []string{"", "", "ffff"}
 
 	// Loop through the old parts converting to ipv6
@@ -27,7 +28,7 @@ func (ip IP) ToV6() (IP, error) {
 		}
 	}
 
-	//Set the parts to ipv6
+	// Set the parts to ipv6
 	newParts = append(newParts, ip.Parts[0]+ip.Parts[1])
 	newParts = append(newParts, ip.Parts[2]+ip.Parts[3])
 	ip.Parts = newParts

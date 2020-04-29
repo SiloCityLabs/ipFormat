@@ -1,4 +1,4 @@
-package ipFormat
+package ipformat
 
 // ToV4 converts ipv6 to ipv4
 // func (ip IP) ToV4() (IP, error) {
